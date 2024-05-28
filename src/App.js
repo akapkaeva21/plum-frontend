@@ -66,6 +66,8 @@ class App extends React.Component {
         )
     }
 
+
+
     onShowItem(item) {
         this.setState({fullItem: item})
         this.setState({showFullItem: !this.state.showFullItem})
