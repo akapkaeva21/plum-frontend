@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import Order from "./Order";
+import {useNavigate} from "react-router-dom";
 
 const showOrders = (props) => {
     let sum=0
@@ -19,16 +20,26 @@ const showNothing = () => {
     </div>)
 }
 
+
+
 export default function Header(props) {
     let [cardOpen, setCardOpen]=useState(false)
+    const navigate = useNavigate();
+    const navigateToContacts = () => {
+        // 👇️ Navigate to /contacts
+        navigate('/contacts');
+    };
+    const navigateToPlumfamily = () => {
+        // 👇️ Navigate to /contacts
+        navigate('/plumfam');
+    };
     return (
         <header>
             <div>
                 <span className='logo'> PluM </span>
                 <ul className='nav'>
-                    <li> Про нас</li>
-                    <li> Каталог</li>
-                    <li> Контакты</li>
+                    <li> <button onClick={navigateToPlumfamily}>Про нас</button></li>
+                    <li>  <button onClick={navigateToContacts}>Контакты</button></li>
                 </ul>
                 <FaShoppingCart onClick={()=>setCardOpen(cardOpen=!cardOpen)} className={`shop-card-button ${cardOpen && 'active'}`}/>
                 {cardOpen && (

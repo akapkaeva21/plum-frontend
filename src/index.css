@@ -51,12 +51,32 @@ header ul.nav li{
   transition: opacity 500ms ease;
 }
 
+header ul.nav li button{
+  margin-left: 5px;
+  display: inline-block;
+  background: rgb(236, 206, 253);
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin-bottom: 25px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 500ms ease;
+  font-family: "Lato", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+}
+
 header ul.nav li:hover{ /*прозрачность при наведении*/
   opacity: 0.5;
 }
 
 header .shop-card-button {
   float: right;
+  font-size: 30px;
+  margin: 10px 10px 40px auto;
   cursor: pointer;
   transition: color, transform 500ms ease;
 }
@@ -69,7 +89,7 @@ header .shop-card-button.active {
 
 header .shop-card {
   position: absolute;
-  top: 30px;
+  top: 40px;
   right: 0;
   width: 450px;
   background: #ffffff;
@@ -82,7 +102,7 @@ header .shop-card {
 
 header .shop-card .empty h2 {
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 
 
 }
@@ -90,7 +110,7 @@ header .shop-card .empty h2 {
 header .shop-card .item {
   width: 100%;
   float: left;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 header .shop-card .item img{
@@ -101,7 +121,7 @@ header .shop-card .item img{
 
 header .shop-card .item h2 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 header .shop-card .item p {

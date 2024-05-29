@@ -4,6 +4,14 @@ import Footer from './components/Footer';
 import Items from "./components/Items";
 import Categories from "./components/Categories";
 import ShowFullItem from "./components/ShowFullItem";
+import {
+    Route,
+    Routes,
+    BrowserRouter as Router,
+} from "react-router-dom";
+import PageNotFound from "./404Page";
+import Contacts from "./components/Contacts";
+import PluMfamily from "./components/PluMfamily";
 
 
 // import Content from './components/Content';
@@ -54,14 +62,24 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className="wrapper">
-                <Header orders={this.state.orders} onDelete={this.deleteOrder}/>
-                <Categories chooseCategory={this.chooseCategory}/>
-                <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>
-                {this.state.showFullItem && <ShowFullItem onAdd={this.addToOrder} onShowItem={this.onShowItem} item={this.state.fullItem} />}
-                <Footer/>
-
-            </div>
+            <Router>
+                <Routes>
+                    <Route exact path="/" element={<div className="wrapper">
+                        <Header orders={this.state.orders} onDelete={this.deleteOrder}/>
+                    <Categories chooseCategory={this.chooseCategory}/>
+                    <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>
+                        {this.state.showFullItem &&
+                                <ShowFullItem onAdd={this.addToOrder} onShowItem={this.onShowItem} item={this.state.fullItem}/>}
+                    <Footer/> </div>}/>
+                    <Route exact path="/contacts"
+                           element={<div className="wrapper"> <Contacts/> </div>}/>
+                    <Route exact path="/plumfam"
+                           element={<div className="wrapper"> <PluMfamily/> </div>}/>
+                    <Route
+                        path="*"
+                        element={<div className="wrapper"><PageNotFound/></div>}/>
+                </Routes>
+            </Router>
         )
     }
 
@@ -70,8 +88,8 @@ class App extends React.Component {
         this.setState({showFullItem: !this.state.showFullItem})
     }
 
-    chooseCategory(category){
-        if(category === 'all'){
+    chooseCategory(category) {
+        if (category === 'all') {
             this.setState({currentItems: this.state.items})
             return
         }
@@ -80,13 +98,15 @@ class App extends React.Component {
         })
         console.log(category)
     }
+
     deleteOrder(id) {
-        this.setState({orders: this.state.orders.filter(el=> el.id!==id)})
+        this.setState({orders: this.state.orders.filter(el => el.id !== id)})
         console.log(id)
     }
+
     addToOrder(item) {
         let isInArray = false
-        this.state.orders.forEach( el =>{
+        this.state.orders.forEach(el => {
             if (el.id === item.id)
                 isInArray = true
         })
