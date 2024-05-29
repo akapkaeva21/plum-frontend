@@ -26,11 +26,9 @@ export default function Header(props) {
     let [cardOpen, setCardOpen]=useState(false)
     const navigate = useNavigate();
     const navigateToContacts = () => {
-        // 👇️ Navigate to /contacts
         navigate('/contacts');
     };
     const navigateToPlumfamily = () => {
-        // 👇️ Navigate to /contacts
         navigate('/plumfam');
     };
     return (

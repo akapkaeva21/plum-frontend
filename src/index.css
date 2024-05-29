@@ -226,6 +226,18 @@ header .presentation::before{
   border-radius: 9px;
 }
 
+contacts .presentation{
+  margin: 50px 0;
+  background: url('./image/cat.jpg');
+  width: 75%;
+  height: 550px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  /*background-blend-mode: multiply;
+  background-color: #2e032c44;*/
+}
+
 main {
   display:  flex;
   width: 100%;
