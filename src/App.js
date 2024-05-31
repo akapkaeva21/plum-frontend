@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,55 +13,47 @@ import {
 import PageNotFound from "./404Page";
 import Contacts from "./components/Contacts";
 import PluMfamily from "./components/PluMfamily";
+import ProductDataService from "./api/products/ProductDataService";
 
 
 // import Content from './components/Content';
+const title_URL = "http://localhost:8082/api/v1/products"
 
-class App extends React.Component {
+class App extends Component {
+
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             orders: [],
             currentItems: [],
-            items:[
-                {
-                    id: 1,
-                    title: 'Корм для кошек сухой с витаминами',
-                    img: '1.jpg',
-                    desc: 'Сытный ужин "Мясная тарелка"',
-                    category:'meal',
-                    price: '299'
-
-                },
-                {
-                    id: 2,
-                    title: 'Корм для собак жидкий с говядиной',
-                    img: '2.jpg',
-                    desc: 'Сочные говядина с овощами',
-                    category:'dog',
-                    price: '54'
-
-                },
-                {
-                    id: 3,
-                    title: 'Корм для кошек жидкий с кроликом',
-                    img: '3.jpg',
-                    desc: 'Нежнейший кролик с соусом',
-                    category:'cat',
-                    price: '50'
-
-                }
-            ],
+            items: [],
+            loading: true,
             showFullItem: false,
             fullItem: {} //отображение товара;
-        }
-        this.state.currentItems = this.state.items
-        this.addToOrder=this.addToOrder.bind(this)
-        this.deleteOrder=this.deleteOrder.bind(this)
-        this.chooseCategory=this.chooseCategory.bind(this)
-        this.onShowItem=this.onShowItem.bind(this)
+
+        };
+
+        //this.state.currentItems = this.state.items
+        this.addToOrder = this.addToOrder.bind(this)
+        this.deleteOrder = this.deleteOrder.bind(this)
+        this.chooseCategory = this.chooseCategory.bind(this)
+        this.onShowItem = this.onShowItem.bind(this)
+        //this.refreshProducts=this.refreshProducts.bind(this)
     }
+
+    componentDidMount()
+    {
+        axios.get("http://localhost:8082/api/v1/products")
+            .then(response => {
+                //this.setState({items : response.data});
+                this.setState({currentItems : response.data});
+            });
+    }
+
     render() {
+
+        const { currentItems } = this.state;
+
         return (
             <Router>
                 <Routes>
