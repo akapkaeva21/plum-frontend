@@ -42,7 +42,7 @@ class App extends Component {
     {
         axios.get("http://localhost:8082/api/v1/products")
             .then(response => {
-                //this.setState({items : response.data});
+                this.setState({items : response.data});
                 this.setState({currentItems : response.data});
             });
     }
@@ -81,14 +81,16 @@ class App extends Component {
     }
 
     chooseCategory(category) {
-        if (category === 'all') {
-            this.setState({currentItems: this.state.items})
-            return
-        }
+        // if (category === 'all') {
+        //     this.setState({currentItems: this.state.items})
+        //     return
+        // }
         this.setState({
-            currentItems: this.state.items.filter(el => el.category === category)
+            currentItems: this.state.items.filter(el => el.categories.some(elem => elem.id === category))
+            //console.log("Ищем совпадение по id категории Ронат и json'a")
         })
         console.log(category)
+        console.log(this.state.currentItems.length)
     }
 
     deleteOrder(id) {
