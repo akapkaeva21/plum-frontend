@@ -17,7 +17,7 @@ const Page = () => {
 
     return (
         <div>
-            <h1>Data from Spring Boot:</h1>
+            <h1>Error. This page did not found(</h1>
             <ul>
                 {users.map(item => (
                     <li key={item.id}>{item.name}</li>

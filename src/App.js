@@ -16,7 +16,7 @@ import PluMfamily from "./components/PluMfamily";
 
 
 // import Content from './components/Content';
-const title_URL = "http://localhost:8082/api/v1/products"
+//const title_URL = "http://localhost:8082/api/v1/products"
 
 class App extends Component {
 
@@ -25,6 +25,7 @@ class App extends Component {
         this.state = {
             orders: [],
             currentItems: [],
+            categories: [],
             items: [],
             loading: true,
             showFullItem: false,
@@ -47,11 +48,16 @@ class App extends Component {
                 //this.setState({items : response.data});
                 this.setState({currentItems : response.data});
             });
+        axios.get("http://localhost:8082/api/v1/categories")
+            .then(response => {
+                //this.setState({items : response.data});
+                this.setState({categories: response.data});
+            });
     }
 
     render() {
 
-        const { currentItems } = this.state;
+        const  {currentItems} = this.state;
 
         return (
             <Router>
@@ -82,20 +88,15 @@ class App extends Component {
         this.setState({showFullItem: !this.state.showFullItem})
     }
 
-    chooseCategory(category) {
-        if (category === 'all') {
-            this.setState({currentItems: this.state.items})
-            return
-        }
+    chooseCategory(categories) {
         this.setState({
-            currentItems: this.state.items.filter(el => el.category === category)
+            currentItems: this.state.currentItems.filter(el => el.categories === categories.id)
         })
-        console.log(category)
+        console.log(this.state.categories)
     }
 
     deleteOrder(id) {
         this.setState({orders: this.state.orders.filter(el => el.id !== id)})
-        console.log(id)
     }
 
     addToOrder(item) {
