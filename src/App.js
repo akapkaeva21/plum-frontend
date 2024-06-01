@@ -16,8 +16,6 @@ import PluMfamily from "./components/PluMfamily";
 
 
 // import Content from './components/Content';
-const title_URL = "http://localhost:8082/api/v1/products"
-
 class App extends Component {
 
     constructor(props) {
