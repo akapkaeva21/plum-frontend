@@ -23,18 +23,10 @@ export class Categories extends Component { //вывод товаров;
         return (
             <div className='categories'>
                 {this.state.categories.map(el => (
-                    <div key={el.id} onClick={() => this.props.chooseCategory(el.key)}>{el.name}</div>
+                    <div key={el.id} onClick={() => this.props.chooseCategory(el.id)}>{el.name}</div>
                 ))}
             </div>
         )
-
-
-    }
-    chooseCategory(categories) {
-        this.setState({
-            currentItems: this.state.currentItems.filter(el => el.categories === categories)
-        })
-        console.log(this.state.categories)
     }
 }
 

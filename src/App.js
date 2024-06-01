@@ -88,12 +88,15 @@ class App extends Component {
         this.setState({showFullItem: !this.state.showFullItem})
     }
 
-    chooseCategory(categories) {
+    chooseCategory (categories) {
+        console.log(categories)
         this.setState({
-            currentItems: this.state.currentItems.filter(el => el.categories === categories.id)
-        })
-        console.log(this.state.categories)
+            currentItems: this.state.currentItems.filter(el => el.categories === categories)
+        });
+        console.log(this.state.currentItems)
+
     }
+
 
     deleteOrder(id) {
         this.setState({orders: this.state.orders.filter(el => el.id !== id)})
