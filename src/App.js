@@ -56,9 +56,7 @@ class App extends Component {
     }
 
     render() {
-
         const  {currentItems} = this.state;
-
         return (
             <Router>
                 <Routes>
@@ -88,14 +86,28 @@ class App extends Component {
         this.setState({showFullItem: !this.state.showFullItem})
     }
 
-    chooseCategory (categories) {
-        console.log(categories)
-        this.setState({
-            currentItems: this.state.currentItems.filter(el => el.categories === categories)
-        });
-        console.log(this.state.currentItems)
+    // chooseCategory (categories) {
+    //     console.log(categories)
+    //     this.setState({
+    //         currentItems: this.state.currentItems.filter(el => el.categories === categories)
+    //     });
+    //     console.log(this.state.currentItems)
+    //
+    // }
+    chooseCategory(category) {
+        const {categories} = this.state;
+        const {currentItems} = this.state;
+        console.log(category);
+        
+            this.setState({
+                currentItems: this.state.currentItems.filter(el => el.categories.some(el => el.id===category))})
+            // console.log(this.state.currentItems.map(el => el.categories.map(el => el.id)));
+            //  console.log (this.state.currentItems.filter(el => el.categories.filter(el => el.id[0])))
 
+        //     console.log(this.state.categories.map(el => el.id));
+        //console.log(this.state.currentItems.map(el => el.categories.map(el => el.id)));
     }
+
 
 
     deleteOrder(id) {
