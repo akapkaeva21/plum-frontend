@@ -200,6 +200,17 @@ header .presentation::before{
   transition: all 500ms ease;
 }
 
+.sign div{
+  display: inline-block;
+  background: rgb(236, 206, 253);
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin-bottom: 25px;
+  margin-right: 15px;
+  border: 1px solid transparent;
+
+}
+
 .categories div:hover {
   border: #421f3f;
   transform: scale(1.1);

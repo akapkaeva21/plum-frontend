@@ -12,7 +12,8 @@ import {
 } from "react-router-dom";
 import PageNotFound from "./404Page";
 import Contacts from "./components/Contacts";
-import PluMfamily from "./components/PluMfamily";
+import Sign from "./Sign";
+import Login from "./Login";
 
 
 // import Content from './components/Content';
@@ -45,6 +46,7 @@ class App extends Component {
                 this.setState({items : response.data});
                 this.setState({currentItems : response.data});
             });
+        console.log("Products are got")
     }
 
     render() {
@@ -63,8 +65,12 @@ class App extends Component {
                     <Footer/> </div>}/>
                     <Route exact path="/contacts"
                            element={<div className="wrapper"> <Contacts/> </div>}/>
-                    <Route exact path="/plumfam"
-                           element={<div className="wrapper"> <PluMfamily/> </div>}/>
+                    <Route exact path="/reg"
+                           //element={<div className=""> <Sign/> </div>}/>
+                           element={<div className='sign'> <Sign/> </div>}/>
+                    <Route exact path="/login"
+                        //element={<div className=""> <Sign/> </div>}/>
+                           element={<div className='sign'> <Login/> </div>}/>
                     <Route
                         path="*"
                         element={<div className="wrapper"><PageNotFound/></div>}/>
@@ -87,7 +93,6 @@ class App extends Component {
         // }
         this.setState({
             currentItems: this.state.items.filter(el => el.categories.some(elem => elem.id === category))
-            //console.log("Ищем совпадение по id категории Ронат и json'a")
         })
         console.log(category)
         console.log(this.state.currentItems.length)
