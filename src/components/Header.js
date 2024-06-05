@@ -3,15 +3,35 @@ import { FaShoppingCart } from "react-icons/fa";
 import Order from "./Order";
 import {useNavigate} from "react-router-dom";
 
+// const showOrders = (props) => {
+//     let sum=0
+//     props.orders.forEach(el => sum += Number.parseInt(el.price))
+//     return ( <div>
+//         {props.orders.map((el)=>(
+//             <Order onDelete={props.onDelete} key={el.id} item={el} />
+//         ))}
+//         <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
+//     </div>)
+// }
+
 const showOrders = (props) => {
-    let sum=0
-    props.orders.forEach(el => sum += Number.parseInt(el.price))
-    return ( <div>
-        {props.orders.map(el=>(
-            <Order onDelete={props.onDelete} key={el.id} item={el} />
-        ))}
-        <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
-    </div>)
+    let sum = 0;
+    let count = 0;
+
+    props.orders.forEach((el) => {
+        sum += Number.parseInt(el.price);
+        count += 1; // увеличиваем количество товаров в корзине
+    });
+
+    return (
+        <div>
+            {props.orders.map((el) => (
+                <Order onDelete={props.onDelete} key={el.id} item={el}/>
+            ))}
+            <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
+            <p className='count'>Количество товаров: {new Intl.NumberFormat().format(count)}</p> {/ выводим количество товаров /}
+        </div>
+    );
 }
 
 const showNothing = () => {
