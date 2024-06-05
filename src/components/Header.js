@@ -48,18 +48,23 @@ export default function Header(props) {
     const navigateToContacts = () => {
         navigate('/contacts');
     };
-    const navigateToPlumfamily = () => {
-        navigate('/plumfam');
+    const navigateToSign = () => {
+        navigate('/reg');
     };
     return (
         <header>
             <div>
                 <span className='logo'> PluM </span>
                 <ul className='nav'>
-                    <li> <button onClick={navigateToPlumfamily}>Про нас</button></li>
-                    <li>  <button onClick={navigateToContacts}>Контакты</button></li>
+
+                    <li>
+                        <button onClick={navigateToContacts}>Контакты</button>
+                    </li>
+                    <li>
+                        <button onClick={navigateToSign}>Регистрация</button>
+                    </li>
                 </ul>
-                <FaShoppingCart onClick={()=>setCardOpen(cardOpen=!cardOpen)} className={`shop-card-button ${cardOpen && 'active'}`}/>
+                <FaShoppingCart onClick={() => setCardOpen(cardOpen = !cardOpen)} className={`shop-card-button ${cardOpen && 'active'}`}/>
                 {cardOpen && (
                     <div className='shop-card'>
                         {props.orders.length >0 ?

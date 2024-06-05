@@ -4,7 +4,7 @@ import axios from "axios";
 export class Categories extends Component { //вывод товаров;
     constructor(props) {
         super(props)
-        this.state = {
+        this.state ={
             categories: []
         }
     }
@@ -16,10 +16,13 @@ export class Categories extends Component { //вывод товаров;
                 //this.setState({items : response.data});
                 this.setState({categories : response.data});
             });
+        
     }
 
     render() {
-        const  {categories} = this.state;
+
+        const { categories } = this.state;
+
         return (
             <div className='categories'>
                 {this.state.categories.map(el => (
