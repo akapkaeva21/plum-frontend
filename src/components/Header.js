@@ -1,38 +1,94 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import Order from "./Order";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
-// const showOrders = (props) => {
-//     let sum=0
-//     props.orders.forEach(el => sum += Number.parseInt(el.price))
-//     return ( <div>
-//         {props.orders.map((el)=>(
-//             <Order onDelete={props.onDelete} key={el.id} item={el} />
-//         ))}
-//         <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
-//     </div>)
-// }
 
-const showOrders = (props) => {
-    let sum = 0;
-    let count = 0;
+function handleCheckout() {
 
-    props.orders.forEach((el) => {
-        sum += Number.parseInt(el.price);
-        count += 1; // увеличиваем количество товаров в корзине
-    });
-
-    return (
-        <div>
-            {props.orders.map((el) => (
-                <Order onDelete={props.onDelete} key={el.id} item={el}/>
-            ))}
-            <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
-            <p className='count'>Количество товаров: {new Intl.NumberFormat().format(count)}</p> {/ выводим количество товаров /}
-        </div>
-    );
 }
+
+const ShowOrders = (props) => {
+    // const [cart, setCart] = useState([]);
+    //
+    // // const handleOrderClick = (item) => {
+    // //     // Логика добавления товара в корзину
+    // //     setCart([...cart, item]);
+    // // };
+    //
+    // useEffect(() => {
+    //     console.log("Run something")
+    // }, [])
+    // const handleCheckout = () => {
+    //     // Логика отправки данных корзины на бэкенд
+    //     fetch("http://localhost:8082/api/v1/producter", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(cart),
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // Логика обработки ответа от бэкенда
+    //             console.log('Заказ успешно отправлен:', data);
+    //             // Очистка корзины после успешного заказа
+    //             setCart([]);
+    //         })
+    //         .catch(error => {
+    //             // Логика обработки ошибок
+    //             console.error('Ошибка при отправке заказа:', error);
+    //         });
+    // }
+
+    // const handleCheckout = () => {
+    //     // Отправка данных корзины на бэкенд
+    //     const checkoutData = JSON.stringify(props.orders);
+    //
+    //     axios.post('http://localhost:8082/api/v1/products', checkoutData, {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //         .then(response => {
+    //             // Обработка ответа от сервера
+    //         })
+    //         .catch(error => {
+    //             // Обработка ошибки
+    //         });
+    // };
+
+    const handleCheckout = async () => {
+        try {
+            let Sunny;
+            const response = await axios.post('http://localhost:8082/api/v1/orders/doorder', {
+                username: Sunny,
+                orders: props.orders,
+                total: sum,
+            });
+            console.log('Order placed successfully:', JSON.stringify(response.data));
+            // Дополнительные действия, например, обновление состояния или редирект
+        } catch (error) {
+            console.error('Error placing order:', error);
+            // Обработка ошибки
+        }
+    };
+
+
+    let sum=0;
+    props.orders.forEach(el => sum += Number.parseInt(el.price))
+    return ( <div>
+        {props.orders.map((el)=>(
+            <Order onDelete={props.onDelete} key={el.id} item={el} />
+        ))}
+        <p className='sum'>Сумма заказа: {new Intl.NumberFormat().format(sum)}₽</p>
+        <p><button type="submit" className='order' onClick={handleCheckout}>Заказ</button>
+        </p>
+    </div>)
+}
+
+
 
 const showNothing = () => {
     return (<div className = 'empty'>
@@ -40,7 +96,36 @@ const showNothing = () => {
     </div>)
 }
 
-
+// const ShoppingCart = () => {
+//     const [cart, setCart] = useState([]);
+//
+//     const handleOrderClick = (item) => {
+//         // Логика добавления товара в корзину
+//         setCart([...cart, item]);
+//     };
+//
+//     const handleCheckout = () => {
+//         // Логика отправки данных корзины на бэкенд
+//         fetch("http://localhost:8082/api/v1/products", {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(cart),
+//         })
+//             .then(response => response.json())
+//             .then(data => {
+//                 // Логика обработки ответа от бэкенда
+//                 console.log('Заказ успешно отправлен:', data);
+//                 // Очистка корзины после успешного заказа
+//                 setCart([]);
+//             })
+//             .catch(error => {
+//                 // Логика обработки ошибок
+//                 console.error('Ошибка при отправке заказа:', error);
+//             });
+//     }
+// }
 
 export default function Header(props) {
     let [cardOpen, setCardOpen]=useState(false)
@@ -48,8 +133,8 @@ export default function Header(props) {
     const navigateToContacts = () => {
         navigate('/contacts');
     };
-    const navigateToSign = () => {
-        navigate('/reg');
+    const navigateToLogin = () => {
+        navigate('/login');
     };
     return (
         <header>
@@ -61,14 +146,14 @@ export default function Header(props) {
                         <button onClick={navigateToContacts}>Контакты</button>
                     </li>
                     <li>
-                        <button onClick={navigateToSign}>Регистрация</button>
+                        <button onClick={navigateToLogin}>Войти</button>
                     </li>
                 </ul>
                 <FaShoppingCart onClick={() => setCardOpen(cardOpen = !cardOpen)} className={`shop-card-button ${cardOpen && 'active'}`}/>
                 {cardOpen && (
                     <div className='shop-card'>
-                        {props.orders.length >0 ?
-                        showOrders(props): showNothing()
+                        {props.orders.length+1>0  ?
+                        ShowOrders(props): showNothing()
                         }
                         </div>
                 )}
@@ -77,3 +162,5 @@ export default function Header(props) {
         </header>
     );
 }
+
+//export default ShoppingCart;

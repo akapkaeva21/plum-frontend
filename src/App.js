@@ -49,6 +49,7 @@ class App extends Component {
         console.log("Products are got")
     }
 
+
     render() {
 
         const { currentItems } = this.state;
@@ -109,8 +110,10 @@ class App extends Component {
             if (el.id === item.id)
                 isInArray = true
         })
-        if(!isInArray)
-            this.setState({orders: [...this.state.orders, item]})
+        if(!isInArray) {
+            this.state.orders.push(item);
+            this.setState({orders: this.state.orders})
+        }
         console.log(this.state.orders)
     }
 }
