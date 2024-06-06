@@ -147,7 +147,7 @@ export default function Header(props) {
                         <button onClick={navigateToContacts}>Контакты</button>
                     </li>
                     <li>
-                        <button onClick={navigateToLogin}>Войти</button>
+                        <button onClick={navigateToLogin}>Выйти</button>
                     </li>
                 </ul>
                 <FaShoppingCart onClick={() => setCardOpen(cardOpen = !cardOpen)} className={`shop-card-button ${cardOpen && 'active'}`}/>

@@ -57,7 +57,7 @@ class App extends Component {
         return (
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<div className="wrapper">
+                    <Route exact path="/home" element={<div className="wrapper">
                         <Header orders={this.state.orders} onDelete={this.deleteOrder}/>
                     <Categories chooseCategory={this.chooseCategory}/>
                     <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>
@@ -69,7 +69,7 @@ class App extends Component {
                     <Route exact path="/reg"
                            //element={<div className=""> <Sign/> </div>}/>
                            element={<div className='sign'> <Sign/> </div>}/>
-                    <Route exact path="/login"
+                    <Route exact path="/"
                         //element={<div className=""> <Sign/> </div>}/>
                            element={<div className='sign'> <Login/> </div>}/>
                     <Route
