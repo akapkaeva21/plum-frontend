@@ -61,13 +61,14 @@ const ShowOrders = (props) => {
 
     const handleCheckout = async () => {
         try {
-            let Sunny;
+            //let Sunny;
             const response = await axios.post('http://localhost:8082/api/v1/orders/doorder', {
-                username: Sunny,
-                orders: props.orders,
-                total: sum,
+                username: "test",
+                items: props.orders
+
             });
             console.log('Order placed successfully:', JSON.stringify(response.data));
+            //console.log('Order placed successfully:', response.json());
             // Дополнительные действия, например, обновление состояния или редирект
         } catch (error) {
             console.error('Error placing order:', error);
