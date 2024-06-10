@@ -63,9 +63,8 @@ const ShowOrders = (props) => {
         try {
             //let Sunny;
             const response = await axios.post('http://localhost:8082/api/v1/orders/doorder', {
-                username: "test",
+                username: "alex",
                 items: props.orders
-
             });
             console.log('Order placed successfully:', JSON.stringify(response.data));
             //console.log('Order placed successfully:', response.json());
@@ -135,7 +134,7 @@ export default function Header(props) {
         navigate('/contacts');
     };
     const navigateToLogin = () => {
-        navigate('/login');
+        navigate('/');
     };
     return (
         <header>

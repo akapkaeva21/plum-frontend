@@ -48,10 +48,8 @@ class App extends Component {
             });
         console.log("Products are got")
     }
-
-
+    
     render() {
-
         const { currentItems } = this.state;
 
         return (

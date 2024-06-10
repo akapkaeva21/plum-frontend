@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 const Sign = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -31,6 +33,7 @@ const Sign = () => {
             .then(response => response.json())
             .then(data => {
                 console.log('Data sent successfully:', data);
+                navigate('/');
             })
             .catch(error => {
                 console.error('Error sending data:', error);
